@@ -1,11 +1,15 @@
-<p *ngIf="!(_dataSource | async) && !_loading" class="background-prompt">No results available. Please start a
-    search...IN GALLERY COMP</p>
+<!-- <p *ngIf="!(_dataSource | async) && !_loading" class="background-prompt">No results available. Please start a
+    search...IN GALLERY COMP</p> -->
 
 <p *ngIf="!(_dataSource | async) && _loading" class="background-prompt">
     <mat-spinner></mat-spinner>
 </p>
+<video controls  #videoPlayer>
+    <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+    Browser not supported
+</video>
 
-<div (scrolled)="incrementCount()" [fromRoot]="true" [infiniteScrollContainer]="'#scrollable'"
+<!-- <div (scrolled)="incrementCount()" [fromRoot]="true" [infiniteScrollContainer]="'#scrollable'"
      [infiniteScrollDistance]="1" [infiniteScrollUpDistance]="2" [alwaysCallback]="true" class="gallery"
      infiniteScroll>
     <div (dragstart)="onTileDrag($event, mediaobject.representativeSegment, mediaobject)"
@@ -65,4 +69,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

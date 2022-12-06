@@ -3,7 +3,10 @@
     <div [style.margin-bottom]="'15px'">
         <button (click)="onSearchClicked()" (keydown.control.enter)="onSearchClicked()" [color]="'accent'"
                 mat-raised-button
-                style="width:100%">
+                style="width:100%"
+                
+                [routerLink]="'/mini-gallery'"
+                >
             <mat-icon>search</mat-icon>
             Search
         </button>
@@ -27,3 +30,4 @@
         <mat-icon>add</mat-icon>
     </button>
 </div>
+<!-- [routerLink]="['MiniGalleryComponent']" -->

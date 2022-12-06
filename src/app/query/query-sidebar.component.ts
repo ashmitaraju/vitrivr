@@ -14,6 +14,7 @@ import {Config} from '../shared/model/config/config.model';
 import {AppConfig} from '../app.config';
 
 import { QuerySideBarService } from './query-sidebar.service';
+import {RouterModule} from '@angular/router';
 
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';

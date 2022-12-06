@@ -6,9 +6,10 @@ import {MaterialModule} from '../material.module';
 import {QuerySidebarComponent} from './query-sidebar.component';
 import {QueryContainerModule} from './containers/query-container.module';
 import { HttpClientModule } from '@angular/common/http';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
-  imports: [MaterialModule, BrowserModule, FormsModule, SketchModule, QueryContainerModule, HttpClientModule],
+  imports: [MaterialModule, BrowserModule, FormsModule, SketchModule, QueryContainerModule, HttpClientModule, RouterModule],
   declarations: [QuerySidebarComponent],
   exports: [QuerySidebarComponent]
 })

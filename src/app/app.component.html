@@ -35,16 +35,16 @@
   </a>
 
 
-  <span class="spacer-medium"></span>
+  <!-- <span class="spacer-medium"></span>
 
   <a mat-icon-button matTooltip="List view" routerLink="/list" routerLinkActive="active" skipLocationChange="true"
      (click)="setActiveView(1)" [color]="activeView === 1 ? 'accent' : ''">
     <mat-icon>list</mat-icon>
   </a>
 
-  <span class="spacer-medium"></span>
+  <span class="spacer-medium"></span> -->
 
-  <a mat-icon-button matTooltip="Temporal Scoring view" routerLink="/temporal-list" routerLinkActive="active"
+  <!-- <a mat-icon-button matTooltip="Temporal Scoring view" routerLink="/temporal-list" routerLinkActive="active"
      skipLocationChange="true" (click)="setActiveView(2)" [color]="activeView === 2 ? 'accent' : ''">
     <mat-icon>access_time</mat-icon>
     <mat-icon>trending_flat</mat-icon>
@@ -61,7 +61,7 @@
   <button (click)="settingssidenav.toggle()" mat-icon-button [matBadge]="settingsBadge"
           matTooltip="Toggle query refinement sidebar">
     <mat-icon>storage</mat-icon>
-  </button>
+  </button> -->
 
   <ng-container *ngIf="config|GetConfigVariablePipe:textualInput">
     <span class="spacer-flex"></span>
@@ -82,9 +82,9 @@
 
   <span class="spacer-medium"></span>
 
-  <app-api-status>
+  <!-- <app-api-status>
     <mat-icon>av timer</mat-icon>
-  </app-api-status>
+  </app-api-status> -->
 </mat-toolbar>
 
 <div>
