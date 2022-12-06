@@ -1,0 +1,82 @@
+<div *ngIf="_loading">
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+</div>
+
+<div *ngIf="_mediaObject as obj" style="padding:10px;">
+    <app-objectviewer #objectviewerComponent [mediaobject]="obj"></app-objectviewer>
+
+    <mat-button-toggle-group name="orderType" aria-label="Order By" [value]="orderTypeStr" (change)="onOrderTypeChange($event.value)" >
+        <mat-button-toggle value="score">Score</mat-button-toggle>
+        <mat-button-toggle value="time">Time</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div *ngIf="_mediaObject._segmentsObservable |async as segments">
+
+        <mat-tab-group>
+            <mat-tab label="Segments ({{segments.length}})">
+                <div fxLayout="row" fxLayoutGap="5px" fxLayoutWrap="wrap">
+                    <div (dragstart)="onSegmentDrag($event, segment)"
+                         *ngFor="let segment of (segments | orderBy:orderType)" class="tile"
+                         draggable="true" fxFlex="200px" [style.border-top-color]="segment.score | BackgroundScorePipe:segment:[]" [style.border-bottom-color]="segment.score | BackgroundScorePipe:segment:[]">
+                        <div class="tile-header" fxLayout fxLayoutAlign="space-between start">
+                            <p [style.margin]="'0'">{{segment.segmentId}} ({{segment._score | ScorePercentagePipe}}&#37;)</p>
+                            <p *ngIf="segment.endabs > 0" [style.margin]="'0'">{{segment.startabs.toFixed(2)}}
+                                - {{segment.endabs.toFixed(2)}}</p>
+                        </div>
+
+                        <img class="tile-body" height="200px"
+                             src="{{this.segment._objectScoreContainer| ThumbnailPathPipe: this.segment:200: null}}"
+                             width="200px">
+
+                        <div class="tile-footer" fxLayout="row-reverse">
+                            <button (click)="onSubmitPressed(segment)" *ngIf="_showSubmitButton"
+                                    mat-icon-button matTooltip="Submit segment to VBS API.">
+                                <mat-icon>send</mat-icon>
+                            </button>
+                            <button (click)="onPlayClick(segment)"
+                                    *ngIf="obj.mediatype === 'VIDEO' || obj.mediatype === 'AUDIO'"
+                                    mat-icon-button matTooltip="Start playback">
+                                <mat-icon>play_arrow</mat-icon>
+                            </button>
+                            <button (click)="onMltClick(segment)" mat-icon-button matTooltip="More-like-this">
+                                <mat-icon>youtube_searched_for</mat-icon>
+                            </button>
+                            <button (click)="onInformationButtonClicked(segment)" mat-icon-button
+                                    matTooltip="Metadata">
+                                <mat-icon>help</mat-icon>
+                            </button>
+                            <button (click)="segmentFeatures.onLoadFeaturesButtonClicked(segment)"
+                                    mat-icon-button
+                                    matTooltip="Load Features">
+                                <mat-icon>remove_red_eye</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button (click)="onLoadAllButtonClicked(segments[0])" color="warn" mat-raised-button
+                        matTooltip="Load all segments">
+                    <mat-icon>all_inclusive</mat-icon>
+                    Load all
+                </button>
+
+            </mat-tab>
+
+
+            <mat-tab label="Object Metadata ({{obj.metadata.size}})">
+                <div *ngIf="obj.metadata.size == 0" style="padding-top:10px">
+                    No object metadata available for {{obj.objectid}}
+                </div>
+                <mat-list>
+                    <mat-list-item *ngFor="let metadatum of obj.metadata | keyvalue">
+                        <h4 mat-line><strong>{{metadatum.key}}</strong></h4>
+                        <p [innerHTML]="metadatum.value | TextWithLinkPipe" mat-line style="white-space: pre-wrap;"></p>
+                    </mat-list-item>
+                </mat-list>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <mat-divider></mat-divider>
+
+</div>
+<app-segment-features #segmentFeaturesComponent></app-segment-features>

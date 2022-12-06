@@ -1,0 +1,93 @@
+<div *ngIf="_loading">
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+</div>
+
+<div *ngIf="_mediaSegment" [style.display]="'inline-flex'">
+    <button (click)="onBackClick()" mat-icon-button matTooltip="Go back...">
+        <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <h2 [style.margin-top]="'5px'">&nbsp;Media segment: {{_mediaSegment.segmentId}}</h2>
+</div>
+
+
+<div *ngIf="_mediaObject" style="padding:10px;">
+    <h3>Object Details</h3>
+    <app-objectviewer #objectviewerComponent [mediaobject]="_mediaObject" [displayHeader]="false"></app-objectviewer>
+    <h3>Segment Details</h3>
+    <div *ngIf="_mediaSegment">
+
+        <div *ngIf="_mediaSegment.segmentId">
+            <dl>
+                <dt>SegmentID</dt>
+                <dd>{{_mediaSegment.segmentId}}</dd>
+                <dt>Sequencenumber</dt>
+                <dd>{{_mediaSegment.sequenceNumber}}</dd>
+                <dt>Start</dt>
+                <dd>{{_mediaSegment.start}}</dd>
+                <dt>Start (Abs)</dt>
+                <dd>{{_mediaSegment.startabs}}</dd>
+                <dt>End</dt>
+                <dd>{{_mediaSegment.end}}</dd>
+                <dt>End (Abs)</dt>
+                <dd>{{_mediaSegment.endabs}}</dd>
+            </dl>
+        </div>
+
+        <mat-tab-group>
+            <mat-tab label="Segment {{_mediaSegment.segmentId}}">
+                <div (dragstart)="onSegmentDrag($event)" class="tile" draggable="true" fxFlex="200px">
+                    <div class="tile-header" fxLayout fxLayoutAlign="space-between start">
+                        <p [style.margin]="'0'">{{_mediaSegment.segmentId}}</p>
+                        <p *ngIf="_mediaSegment.endabs > 0" [style.margin]="'0'">{{_mediaSegment.startabs.toFixed(2)}}
+                            - {{_mediaSegment.endabs.toFixed(2)}}</p>
+                    </div>
+
+                    <img class="tile-body" height="200px"
+                         src="{{_mediaObject| ThumbnailPathPipe: _mediaSegment}}"
+                         width="200px">
+
+                    <div class="tile-footer" fxLayout="row-reverse">
+                        <button (click)="onPlayClick(_mediaSegment)"
+                                *ngIf="_mediaObject.mediatype === 'VIDEO' || _mediaObject.mediatype === 'AUDIO'"
+                                mat-icon-button matTooltip="Start playback">
+                            <mat-icon>play_arrow</mat-icon>
+                        </button>
+                        <button (click)="onMltClick(_mediaSegment)" mat-icon-button matTooltip="More-like-this">
+                            <mat-icon>youtube_searched_for</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+            </mat-tab>
+
+            <mat-tab *ngIf="_segMetadata" label="Segment Metadata ({{_segMetadata.size}})">
+                <div *ngIf="_segMetadata.size == 0" style="padding-top:10px">
+                    No segment metadata available for {{_mediaSegment.segmentId}}
+                </div>
+                <mat-list>
+                    <mat-list-item *ngFor="let metadatum of _segMetadata | keyvalue">
+                        <h4 mat-line><strong>{{metadatum.key}}</strong></h4>
+                        <p [innerHTML]="metadatum.value | TextWithLinkPipe" mat-line style="white-space: pre-wrap;"></p>
+                    </mat-list-item>
+                </mat-list>
+            </mat-tab>
+
+            <mat-tab *ngIf="_objMetadata" label="Object Metadata ({{_objMetadata.size}})">
+                <div *ngIf="_objMetadata.size == 0" style="padding-top:10px">
+                    No object metadata available for {{_mediaObject.objectId}}
+                </div>
+                <mat-list>
+                    <mat-list-item *ngFor="let metadatum of (_objMetadata | keyvalue)">
+                        <h4 mat-line><strong>{{metadatum.key}}</strong></h4>
+                        <p [innerHTML]="metadatum.value | TextWithLinkPipe" mat-line style="white-space: pre-wrap;"></p>
+                    </mat-list-item>
+                </mat-list>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <mat-divider></mat-divider>
+
+</div>
+
+<app-segment-features #segmentFeaturesComponent></app-segment-features>

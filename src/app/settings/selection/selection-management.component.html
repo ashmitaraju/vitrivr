@@ -1,0 +1,25 @@
+<h3>Highlighted items</h3>
+
+<div *ngIf="(_selectionService |async).size == 0">
+    <p class="text-muted">No items highlighted!</p>
+</div>
+
+<div *ngIf="(_selectionService |async).size > 0">
+    <mat-list>
+        <mat-list-item fxLayout="row" fxLayoutAlign="center">
+            <button (click)="onClearSelectionClicked()" color="warn" mat-raised-button
+                    matTooltip="Remove all highlighting">
+                Clear
+            </button>
+        </mat-list-item>
+
+        <mat-list-item *ngFor="let current of (_selectionService |async).entries()">
+            <button (click)="onSegmentClicked(current[0])" mat-flat-button>{{current[0]}}</button>
+            <button (click)="onTagButtonClicked(current[0],tag)" *ngFor="let tag of current[1]"
+                    mat-icon-button>
+                <mat-icon [style.color]="tag | ColorForRelevancePipe: 1.0">album</mat-icon>
+            </button>
+        </mat-list-item>
+
+    </mat-list>
+</div>

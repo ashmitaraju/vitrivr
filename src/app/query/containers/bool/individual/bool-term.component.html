@@ -1,0 +1,63 @@
+<div [style.display]="'flex'" [style.padding-left]="'10px'" [style.text-align]="'left'" [style.width]="'100%'"
+     class="options">
+    <!-- Attribute Dropdown -->
+    <mat-select [ngModel]="_attribute | async" (ngModelChange)="_attribute.next($event)" class="options" required>
+        <mat-option *ngFor="let attr of possibleAttributes | async"
+                    [value]="attr">{{attr.displayName}}</mat-option>
+    </mat-select>
+
+    <!-- Remove query button-->
+    <div style="width:10%;">
+        <button (click)="onRemoveButtonClicked()" class="icon-button" matTooltip="Remove query term">
+            <mat-icon>remove</mat-icon>
+        </button>
+    </div>
+
+    <!-- If the current attribute is set, populate operator & value fields -->
+    <ng-container *ngIf="(_attribute | async) as currentAttrAsync" class="options">
+
+        <!-- Operator dropdown-->
+        <mat-select [ngModel]="_operator | async" (ngModelChange)="_operator.next($event)" class="options" required>
+            <mat-option *ngFor="let operator of currentAttrAsync.operators" [value]="operator" class="options"
+                        style="width:100%">
+                {{operator.toString()}}
+            </mat-option>
+        </mat-select>
+
+        <!-- Freetext Field for Numbers & Text -->
+        <mat-form-field *ngIf="currentAttrAsync.inputType.valueOf() === 2 || currentAttrAsync.inputType.valueOf() === 3" class="options">
+            <input [ngModel]="_value | async"
+                   (ngModelChange)="_value.next($event)" matInput placeholder="Search text">
+        </mat-form-field>
+
+        <!-- Dropdown for Options -->
+        <mat-select *ngIf="currentAttrAsync.inputType.valueOf() === 0 || currentAttrAsync.inputType.valueOf() === 5;" [ngModel]="_value | async"
+                    (ngModelChange)="_value.next($event)" class="options" required>
+            <mat-option *ngFor="let option of currentAttrAsync.options" [value]="option">
+                {{option}}
+            </mat-option>
+        </mat-select>
+
+        <!-- Date Selector for Date (not yet implemented) -->
+        <mat-form-field *ngIf="currentAttrAsync.inputType.valueOf()===1" class="options textinput">
+            <input [ngModel]="_value | async"
+                   (ngModelChange)="_value.next($event)" matInput placeholder="This will be a date selector later">
+        </mat-form-field>
+
+        <!-- Slider for Range -->
+        <div *ngIf="currentAttrAsync.inputType.valueOf()===4" class="options">
+            <ngx-slider [highValue]="_max | async"
+                        (highValueChange)="_max.next($event)" [value]="_min | async"
+                        (valueChange)="_min.next($event)" [options]="currentAttrAsync.sliderOptions"></ngx-slider>
+        </div>
+
+        <div *ngIf="currentAttrAsync.inputType.valueOf()===6" class="options" (keydown.enter)="$event.preventDefault()" (keydown.control.enter)="$event.preventDefault()">
+            <mat-button-toggle-group name="ingredients" aria-label="Ingredients" multiple [ngModel]="_value | async" (ngModelChange)="_value.next($event)" (keydown.enter)="$event.preventDefault()">
+                <mat-button-toggle *ngFor="let option of currentAttrAsync.options; index as i" [value]="option">{{currentAttrAsync.shorthand[i]}}</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+
+    </ng-container>
+</div>
+<mat-divider></mat-divider>
+<div style="padding-bottom:10px;"></div>
