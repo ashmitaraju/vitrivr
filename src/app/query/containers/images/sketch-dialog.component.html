@@ -1,12 +1,14 @@
 <mat-dialog-content>
     <mat-toolbar color="primary">
-        <mat-icon matTooltip="Pencil size">border_color</mat-icon>
+        <!-- <mat-icon matTooltip="Pencil size">border_color</mat-icon>
         <span class="spacer-tiny"></span>
         <mat-slider (change)="onLineSizeChange()" [(ngModel)]="linesize" [style.min-width]="'100px'" max="100" min="1"
-                    step="1" tickInterval="auto"></mat-slider>
+                    step="1" tickInterval="auto"></mat-slider> -->
+
+                    <p> Select your region of interest. </p>
 
         <span class="spacer-flex"></span>
-
+<!-- 
         <button (click)="onFillCanvasClicked()" mat-icon-button matTooltip="Fill canvas with color.">
             <mat-icon>format_color_fill</mat-icon>
         </button>
@@ -15,19 +17,22 @@
             <mat-icon>delete</mat-icon>
         </button>
 
-        <span class="spacer-flex"></span>
+        <span class="spacer-flex"></span> -->
 
         <button (click)="onLoadImage()" mat-icon-button matTooltip="Load image from computer.">
             <mat-icon>file_upload</mat-icon>
-        </button>
+        </button>  
+
+       
+      
 
         <button (click)="close()" mat-icon-button>
             <mat-icon matTooltip="Close window and save.">close</mat-icon>
-        </button>
+        </button> 
     </mat-toolbar>
 
 
-    <app-sketch-canvas #sketch [height]="450" [width]="450"></app-sketch-canvas>
+    <app-sketch-canvas #sketch [height]="450" [width]="700"></app-sketch-canvas>
     <input #imageloader (change)="onFileAvailable($event)" hidden type="file">
 
     <!-- <div class="picker">

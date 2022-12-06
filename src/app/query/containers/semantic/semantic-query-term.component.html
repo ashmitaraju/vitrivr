@@ -1,2 +1,12 @@
-<img #previewimg (click)="onViewerClicked()" class="previewimg" matTooltip="Click to drawn a semantic sketch."
-     style="background-image: url('assets/images/transparent.png')" width="150"/>
+<!-- <img #previewimg (click)="onViewerClicked()" class="previewimg" matTooltip="Click to drawn a semantic sketch."
+     style="background-image: url('assets/images/transparent.png')" width="150"/> -->
+
+<mat-form-field>
+     <input [formControl]="formCtrl" [matAutocomplete]="auto" aria-label="Select a concept" matInput
+               placeholder="Select an object">
+     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event.option.value)">
+          <mat-option *ngFor="let category of (_filteredCategories | async)" [value]="category.name">
+               <span [style.color]="category.color"><strong>{{category.name}}</strong></span>
+          </mat-option>
+     </mat-autocomplete>
+</mat-form-field>

@@ -75,21 +75,21 @@
 
             <button (click)="onToggleButtonClicked('SEMANTIC')"
                     *ngIf="_config|GetConfigVariablePipe:queryOptionsSemantic"
-                    class="icon-button" matTooltip="Toggle semantic sketch query term">
+                    class="icon-button" matTooltip="Object Detection query term">
                 <mat-icon
                         [attr.class]="(containerModel|ModelHasTermPipe: 'SEMANTIC':trigger) ? 'material-icons md-primary-250' : 'material-icons md-primary-100'">
                     toys
                 </mat-icon>
             </button>
 
-            <button (click)="onToggleButtonClicked('BOOLEAN')"
+            <!-- <button (click)="onToggleButtonClicked('BOOLEAN')"
                     *ngIf="_config|GetConfigVariablePipe:queryOptionsBoolean"
                     class="icon-button" matTooltip="Toggle boolean query term">
                 <mat-icon
                         [attr.class]="(containerModel|ModelHasTermPipe: 'BOOLEAN':trigger)? 'material-icons md-primary-250' : 'material-icons md-primary-100'">
                     code
                 </mat-icon>
-            </button>
+            </button> -->
 
           <button (click)="onToggleButtonClicked('SKELETON')"
                   *ngIf="_config|GetConfigVariablePipe:queryOptionsSkeleton"
