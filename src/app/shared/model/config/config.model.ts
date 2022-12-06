@@ -18,7 +18,7 @@ export class Config {
   /** A handy port checking regex based on https://stackoverflow.com/a/12968117 */
   private static readonly PORT_REGEX = /:([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])\//;
   _config = {
-    title: 'vitrivr',
+    title: 'EVA',
     api: {
       host: window.location.hostname, /* IP address or hostname (no scheme), pointing to the API endpoint; defaults to hostname of window. */
       port: 4567, /* Port for the API. */

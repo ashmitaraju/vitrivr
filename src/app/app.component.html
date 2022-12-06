@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <img src="../assets/images/vitrivr_logo.png">
+  <!-- <img src="../assets/images/vitrivr_logo.png"> -->
 
   <span class="spacer-flex"></span>
 
@@ -9,18 +9,31 @@
 
   <span class="spacer-xlarge"></span>
 
-  <a *ngIf="!(config | GetConfigVariablePipe:competitionHost)" mat-icon-button matTooltip="Gallery view"
+  <!-- <a *ngIf="!(config | GetConfigVariablePipe:competitionHost)" mat-icon-button matTooltip="Gallery view"
      routerLink="/gallery"
      routerLinkActive="active" skipLocationChange="true">
     <mat-icon>grid_on</mat-icon>
-  </a>
+  </a> -->
+  <a *ngIf="!(config | GetConfigVariablePipe:competitionHost)" mat-icon-button matTooltip="Input"
+  routerLink="/gallery"
+  routerLinkActive="active" skipLocationChange="true" (click)="setActiveView(0)" [color]="activeView === 0 ? 'accent' : ''">
+ <mat-icon>grid_on</mat-icon>
+</a>
+<span class="spacer-medium"></span>
 
-  <span class="spacer-medium"></span>
+
+  <!-- <span class="spacer-medium"></span>
 
   <a mat-icon-button matTooltip="Mini gallery view" routerLink="/mini-gallery" routerLinkActive="active"
      skipLocationChange="true" (click)="setActiveView(0)" [color]="activeView === 0 ? 'accent' : ''">
     <mat-icon>view_comfy</mat-icon>
+  </a> -->
+  <a mat-icon-button matTooltip="Output" routerLink="/mini-gallery" routerLinkActive="active"
+  (click)="setActiveView(0)"
+     skipLocationChange="true" >
+    <mat-icon>view_comfy</mat-icon>
   </a>
+
 
   <span class="spacer-medium"></span>
 

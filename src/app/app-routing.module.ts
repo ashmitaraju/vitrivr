@@ -25,7 +25,8 @@ const appRoutes: Routes = [
   {path: 'list', component: ListComponent},
   {path: 'temporal-list', component: TemporalListComponent},
   {path: 'mini-gallery', component: MiniGalleryComponent},
-  {path: '', component: MiniGalleryComponent}
+  {path: '', component: GalleryComponent},
+
 ];
 
 @NgModule({
