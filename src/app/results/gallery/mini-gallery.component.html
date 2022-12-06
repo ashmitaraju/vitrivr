@@ -13,14 +13,15 @@
             [container]="this" [score]="segment._score" [segment]="segment"></app-result-segment-preview-tile>
 </div> -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<div style="padding:10px;">
 <p *ngIf="!(_dataSource| async) && !_loading" class="background-prompt">No results available. Please start a
     search...IN MINI GALLERY</p>
-<h4> Add grids here?</h4>
-<img src="'"/>
-<img src="'"/>
-<img src="'"/>
+<h1> Results : </h1>
+<!-- <p *ngIf="!(_dataSource| async) && !_loading" >
+
+<mat-spinner></mat-spinner>
+</p> -->
 <mat-grid-list cols="2" rowHeight="2:1" class="video">
     <mat-grid-tile>
         <!-- <mat-checkbox> -->
@@ -51,3 +52,4 @@
     </mat-grid-tile>
   </mat-grid-list>
 
+</div>

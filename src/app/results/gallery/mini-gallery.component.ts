@@ -25,6 +25,7 @@ export class MiniGalleryComponent extends AbstractSegmentResultsViewComponent<Me
 
   /** Name of this MiniGalleryComponent. */
   protected name = 'segment_gallery';
+  public showloader: boolean = false;  
 
   constructor(_cdr: ChangeDetectorRef,
               _queryService: QueryService,
