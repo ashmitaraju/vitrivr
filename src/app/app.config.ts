@@ -72,7 +72,7 @@ export class AppConfig {
     });
   }
 
-  public getUsers() {
+  public queryEVA() {
     return this.http.get("http://localhost:5001/api/queryevaocr/"); 
   }
 }

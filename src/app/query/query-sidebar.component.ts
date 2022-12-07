@@ -95,7 +95,7 @@ export class QuerySidebarComponent implements OnInit, AfterViewInit {
 
     console.log("onsearchclicked");
 
-    this.appService.getUsers().pipe(takeUntil(this.destroy$)).subscribe((users: any[]) => {
+    this.appService.queryEVA().pipe(takeUntil(this.destroy$)).subscribe((users: any[]) => {
      
     console.log("we got frames, " , users);
   });

@@ -197,7 +197,7 @@ export class DefaultService {
         );
     }
 
-    public getUsers() {
+    public queryEVA() {
         return this.httpClient.get("http://localhost:5001/api/queryevaocr/"); 
       }
 

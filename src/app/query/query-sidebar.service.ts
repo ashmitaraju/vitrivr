@@ -9,7 +9,7 @@ export class QuerySideBarService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers() {
+  queryEVA() {
 
     const body = {
         "bbox":[23,23,23,23],

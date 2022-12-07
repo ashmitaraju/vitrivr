@@ -25,7 +25,7 @@
         <div fxLayout="row inline" fxLayoutGap="15px" fxLayoutAlign="space-around center"
              style="width:100%;padding-right:20px">
             <button (click)="onToggleButtonClicked('IMAGE')" *ngIf="_config|GetConfigVariablePipe:queryOptionsImage"
-                    class="icon-button" matTooltip="Toggle image query term">
+                    class="icon-button" matTooltip="Select bounding box">
                 <mat-icon
                         [attr.class]="(containerModel|ModelHasTermPipe: 'IMAGE': trigger) ? 'material-icons md-primary-250' : 'material-icons md-primary-100'">
                     panorama
