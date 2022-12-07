@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
 import {MediaObjectScoreContainer} from '../../shared/model/results/scores/media-object-score-container.model';
 import {MediaSegmentScoreContainer} from '../../shared/model/results/scores/segment-score-container.model';
 import {Observable} from 'rxjs';
@@ -25,7 +25,8 @@ export class MiniGalleryComponent extends AbstractSegmentResultsViewComponent<Me
 
   /** Name of this MiniGalleryComponent. */
   protected name = 'segment_gallery';
-  public showloader: boolean = false;  
+  public showloader: boolean = true; 
+  public isTimeDone: boolean = false;
 
   constructor(_cdr: ChangeDetectorRef,
               _queryService: QueryService,

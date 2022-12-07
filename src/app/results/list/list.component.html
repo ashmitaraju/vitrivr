@@ -1,10 +1,10 @@
-<div style="padding:10px;">
+<!-- <div style="padding:10px;">
     <p *ngIf="!(_dataSource | async) && !_loading" class="background-prompt">No results available. Please start a
         search...</p>
 
     <p *ngIf="!(_dataSource | async) && _loading" class="background-prompt">
         <mat-spinner></mat-spinner>
-    </p>
+    </p> -->
 
     <!-- <div (scrolled)="incrementCount()" [fromRoot]="true" [infiniteScrollContainer]="'#scrollable'"
          [alwaysCallback]="true"
@@ -19,4 +19,33 @@
             </div>
         </ng-container>
     </div> -->
-</div>
+<!-- </div> -->
+
+<div style="padding:10px;">
+
+    <!-- <p *ngIf="!(_dataSource| async) && !_loading" class="background-prompt">No results available. Please start a
+        search...IN MINI GALLERY</p> -->
+    <h1> Results : </h1>
+    
+    
+    
+    <mat-grid-list cols="2" rowHeight="2:1" class="video">
+        <mat-grid-tile>
+            <!-- <mat-checkbox> -->
+                <!-- i'm a normal checkbox -->
+              <!-- </mat-checkbox> -->
+            <video controls  #videoPlayer>
+                <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                Browser not supported
+            </video>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <video controls  #videoPlayer>
+                <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                Browser not supported
+            </video>
+        </mat-grid-tile>
+      </mat-grid-list>
+    
+    </div>
+    

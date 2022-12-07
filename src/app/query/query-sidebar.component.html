@@ -4,13 +4,15 @@
         <button (click)="onSearchClicked()" (keydown.control.enter)="onSearchClicked()" [color]="'accent'"
                 mat-raised-button
                 style="width:100%"
-                
-                [routerLink]="'/mini-gallery'"
                 >
             <mat-icon>search</mat-icon>
             Search
         </button>
+            <button (click)="onSearchClickedTwice()" style="height: 1px; outline: 0; border: 0ch;" (keydown.control.enter)="onSearchClicked()" 
+            >
+            </button>
     </div>
+    
 
     <div [style.margin-bottom]="'15px'">
         <button (click)="onClearAllClicked()" [color]="'warn'" mat-raised-button style="width:100%">
@@ -31,3 +33,5 @@
     </button>
 </div>
 <!-- [routerLink]="['MiniGalleryComponent']" -->
+
+<!-- [routerLink]="'/mini-gallery'" -->

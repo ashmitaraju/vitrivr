@@ -16,7 +16,7 @@
   </a> -->
   <a *ngIf="!(config | GetConfigVariablePipe:competitionHost)" mat-icon-button matTooltip="Input"
   routerLink="/gallery"
-  routerLinkActive="active" skipLocationChange="true" (click)="setActiveView(0)" [color]="activeView === 0 ? 'accent' : ''">
+  routerLinkActive="active" skipLocationChange="true" (click)="setActiveView(0)" >
  <mat-icon>grid_on</mat-icon>
 </a>
 <span class="spacer-medium"></span>
@@ -37,10 +37,10 @@
 
   <span class="spacer-medium"></span>
 
-  <a mat-icon-button matTooltip="List view" routerLink="/list" routerLinkActive="active" skipLocationChange="true"
+  <!-- <a mat-icon-button matTooltip="List view" routerLink="/list" routerLinkActive="active" skipLocationChange="true"
      (click)="setActiveView(1)" [color]="activeView === 1 ? 'accent' : ''">
     <mat-icon>list</mat-icon>
-  </a>
+  </a> -->
 
   <span class="spacer-medium"></span>
 
