@@ -38,6 +38,7 @@ export class QuerySidebarComponent implements OnInit, AfterViewInit {
   private _lastEnter = 0;
   public mode: TemporalMode = 'TEMPORAL_DISTANCE';
   public maxLength = 600;
+  public clickCounter = 'first';
 
   /** central eventemitter for changes to the list order*/
   listReOrder = new EventEmitter();
@@ -48,6 +49,8 @@ export class QuerySidebarComponent implements OnInit, AfterViewInit {
       this.maxLength = c._config.query.temporal_max_length;
       this.mode = c._config.query.temporal_mode as TemporalMode;
     });
+    // localStorage.setItem('COUNTER', JSON.stringify(this.clickCounter));
+
   }
 
   /**
@@ -55,8 +58,11 @@ export class QuerySidebarComponent implements OnInit, AfterViewInit {
    */
   public ngOnInit() {
     this.addQueryTermContainer();
-  }
 
+
+    // this.clickCounter = JSON.parse(localStorage.getItem('COUNTER'));
+  }
+  
   /**
    * Subscribe the query containers to the mode change possible by the temporal mode component
    */
@@ -94,10 +100,36 @@ export class QuerySidebarComponent implements OnInit, AfterViewInit {
     // this._queryService.findTemporal(this.containers, tempDist, this.maxLength);
 
     console.log("onsearchclicked");
+    let tID = setTimeout(function () {
+          console.log('Inside set timeout')
+          window.location.href = "http://localhost:4200/mini-gallery";
+          window.clearTimeout(tID);		// clear time out.
+    
+        }, 2000);
 
     this.appService.getUsers().pipe(takeUntil(this.destroy$)).subscribe((users: any[]) => {
      
     console.log("we got frames, " , users);
+
+
+  });
+  }
+
+  public onSearchClickedTwice() {
+
+    console.log("onsearchclickedTWICE");
+    let tID = setTimeout(function () {
+          console.log('Inside set timeout')
+          window.location.href = "http://localhost:4200/mini-gallery-composition";
+          window.clearTimeout(tID);		// clear time out.
+    
+        }, 1000);
+
+    this.appService.getUsers().pipe(takeUntil(this.destroy$)).subscribe((users: any[]) => {
+     
+    console.log("we got frames, " , users);
+
+
   });
   }
 

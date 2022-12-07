@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   },
   {path: 'collection', component: CollectionComponent},
   {path: 'gallery', component: GalleryComponent},
-  {path: 'list', component: ListComponent},
+  {path: 'mini-gallery-composition', component: ListComponent},
   {path: 'temporal-list', component: TemporalListComponent},
   {path: 'mini-gallery', component: MiniGalleryComponent},
   {path: '', component: GalleryComponent},
