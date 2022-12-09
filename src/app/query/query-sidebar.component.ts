@@ -107,7 +107,7 @@ export class QuerySidebarComponent implements OnInit, AfterViewInit {
     
         }, 2000);
 
-    this.appService.getUsers().pipe(takeUntil(this.destroy$)).subscribe((users: any[]) => {
+    this.appService.queryEVA().pipe(takeUntil(this.destroy$)).subscribe((users: any[]) => {
      
     console.log("we got frames, " , users);
 

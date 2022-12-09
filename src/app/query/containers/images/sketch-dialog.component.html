@@ -32,8 +32,10 @@
     </mat-toolbar>
 
 
-    <app-sketch-canvas #sketch [height]="450" [width]="700"></app-sketch-canvas>
-    <input #imageloader (change)="onFileAvailable($event)" hidden type="file">
+    <!-- <app-sketch-canvas #sketch [height]="1000" [width]="1900"></app-sketch-canvas>
+    <input src="http://localhost:8000/image.png" type="image"> -->
+    <app-sketch-canvas #sketch [height]="401" [width]="700"></app-sketch-canvas>
+    <!-- <input #imageloader (change)="onFileAvailable($event)" hidden type="file"> -->
 
     <!-- <div class="picker">
         <span (colorPickerChange)="onColorChange($event)"

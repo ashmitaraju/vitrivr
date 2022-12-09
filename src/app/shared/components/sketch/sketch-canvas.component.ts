@@ -4,7 +4,7 @@ import {Point} from './model/point.model';
 @Component({
   selector: 'app-sketch-canvas',
   template: `
-      <canvas #sketch width='{{width}}' height='{{height}}' style="display: block; border: solid 1px; background-image: url(\'assets/images/transparent.png\')" (mousedown)="onMousedown($event)"
+      <canvas #sketch height={{height}} width={{width}} style="display: block; border: solid 1px;  background-image: url('http://localhost:8000/kohli.png')" (mousedown)="onMousedown($event)"
               (mouseup)="onMouseup($event)" (mouseleave)="onMouseLeave($event)" (mousemove)="onMousemove($event)" (drop)="onCanvasDropped($event)" (dragover)="onCanvasDragOver($event)"></canvas>`
 })
 
